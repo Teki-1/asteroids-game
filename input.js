@@ -1,3 +1,6 @@
+import { Projectile } from "./projectile.js";
+import { projectiles, PROJECTILE_SPEED } from "./config.js";
+
 export const keys = {
   w: {
     pressed: false,
@@ -11,7 +14,7 @@ export const keys = {
   },
 };
 
-export function inputSetup() {
+export function inputSetup(player) {
   window.addEventListener("keydown", (event) => {
     switch (event.code) {
       case "KeyW":
@@ -22,6 +25,20 @@ export function inputSetup() {
         break;
       case "KeyD":
         keys.d.pressed = true;
+        break;
+      case "Space":
+        projectiles.push(
+          new Projectile({
+            position: {
+              x: player.position.x + Math.cos(player.rotation) * 30,
+              y: player.position.y + Math.sin(player.rotation) * 30,
+            },
+            velocity: {
+              x: Math.cos(player.rotation) * PROJECTILE_SPEED,
+              y: Math.sin(player.rotation) * PROJECTILE_SPEED,
+            },
+          })
+        );
         break;
     }
   });

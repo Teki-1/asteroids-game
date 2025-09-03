@@ -7,3 +7,6 @@ canvas.height = window.innerHeight;
 export const SPEED = 2.5;
 export const ROTATION_SPEED = 0.03;
 export const SLOW_DOWN = 0.95;
+export const PROJECTILE_SPEED = 3;
+
+export const projectiles = [];
